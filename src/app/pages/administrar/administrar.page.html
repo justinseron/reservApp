@@ -1,3 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Administrar</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
 <ion-content>
-    <p>adm</p>
+    <ion-card>
+      <form [formGroup]="persona" (ngSubmit)="registrar()">
+        <ion-input formControlName="rut" type="text" labelPlacement="stacked" label="RUT"></ion-input>
+        <br>
+        <ion-input formControlName="nombre" type="text" labelPlacement="stacked" label="Nombre"></ion-input>
+        <br>
+        <ion-input formControlName="fecha_nacimiento" type="date" labelPlacement="stacked" label="Fecha Nacimiento"></ion-input>
+        <br>
+        <ion-select formControlName="genero" label="Género" labelPlacement="stacked" placeholder="Género">
+          <ion-select-option>Masculino</ion-select-option>
+          <ion-select-option>Femenino</ion-select-option>
+          <ion-select-option>Otro</ion-select-option>
+        </ion-select>
+        <ion-label>¿Tiene equipo?</ion-label>
+        <br>
+        <ion-radio-group formControlName="tiene_equipo">
+          <ion-radio value="si">Si</ion-radio>
+          <ion-radio value="no">No</ion-radio>
+        </ion-radio-group>
+  
+        <ion-input *ngIf="persona.controls.tiene_equipo.value=='si'" formControlName="nombre_equipo" type="text" label="Nombre Equipo" labelPlacement="stacked"></ion-input>
+  
+        <br>
+        <ion-button [disabled]="persona.invalid" type="submit" size="block" color="warning">REGISTRAR</ion-button>
+      </form>
+    </ion-card>
+
+    <ion-list *ngFor="let usuario of usuarios">
+      <ion-item>{{usuario.rut}} - {{usuario.nombre}}</ion-item>
+    </ion-list>
+  
 </ion-content>
