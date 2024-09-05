@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
 
   //método asociado al boton para hacer un login:
   login(){
-    if(this.email=="pavel@gmail.com" && this.password=="Jiulliet"){
+    if(this.email=="" && this.password==""){
       this.router.navigate(['/home'])
     }else{
       alert("¡Correo o contraseña incorrectos!")
